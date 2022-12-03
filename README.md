@@ -27,7 +27,7 @@ git clone https://github.com/Mohammedthoufeeq/MITM-Attacks/
 cd MITM-Attacks
 
 To spoof,
-  python arpspoof.py
+  python arpspoof.py -t target_ip -r router_ip
 
 To sniff,
   python sniifer.py 
